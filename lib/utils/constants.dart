@@ -8,4 +8,7 @@ class Constants {
   static const INVALID_TOKEN = "Unauthorised user";
   static const USER_EXISTS = "User already exists";
   static const INVALID_USER = "Invalid username or password";
+
+  // api
+  static const logIn = "Login";
 }

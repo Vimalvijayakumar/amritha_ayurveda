@@ -1,22 +1,24 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:amritha_ayurveda/services/secure_storage_service.dart';
 import 'package:amritha_ayurveda/utils/constants.dart';
 import 'package:amritha_ayurveda/utils/network/app_exceptions.dart';
 import 'package:http/http.dart' as http;
 
 class ApiBaseHelper {
-  final baseUrl = "https://us-central1-upsidehealth-ae96e.cloudfunctions.net";
+  final baseUrl = "https://flutter-amr.noviindus.in/api/";
 
-  // final authToken=PreferenceUtils.getString(Constants.USER_TOKEN);
+  final SecureStorageService _storage = SecureStorageService();
   final authToken = "";
 
   //For all the GET requests
   Future<dynamic> get(String url) async {
+    String? authToken = await _storage.getToken();
     var responseJson;
     try {
       final response = await http.get(
         Uri.parse(baseUrl + url),
-        headers: {HttpHeaders.authorizationHeader: authToken},
+        headers: {HttpHeaders.authorizationHeader: authToken.toString()},
       );
       print("the url is ${baseUrl + url}");
       responseJson = _returnResponse(response);

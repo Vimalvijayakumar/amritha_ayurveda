@@ -1,3 +1,4 @@
+import 'package:amritha_ayurveda/data/repositories/user_repository.dart';
 import 'package:amritha_ayurveda/ui/screens/login/login.dart';
 import 'package:amritha_ayurveda/ui/screens/login/login_cubit.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
           ),
           home: BlocProvider(
-            create: (context) => LoginCubit(),
+            create: (context) => LoginCubit(UserRepository()),
             child: LoginScreen(),
           ),
         );
